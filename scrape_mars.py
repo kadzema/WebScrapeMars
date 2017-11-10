@@ -22,7 +22,7 @@ def scrape():
 
     marsDict['news_title'] = news_title 
     marsDict['news_teaser'] = news_p
-
+    print("News scraped")
 
     #### find the mars feature image
     # executable_path = {'executable_path': 'chromedriver'}
@@ -43,6 +43,7 @@ def scrape():
     featured_image_url = baseUrl + featured_image_url
 
     marsDict['featured_image_url'] = featured_image_url
+    print("Featured image scraped")
 
     #### mars weather via twitter
     # executable_path = {'executable_path': 'chromedriver'}
@@ -66,6 +67,7 @@ def scrape():
             pass
 
     marsDict['weather'] = weather
+    print("Weather scraped")
 
     #### mars facts
     # executable_path = {'executable_path': 'chromedriver'}
@@ -79,6 +81,7 @@ def scrape():
     tableHTML = tableHTML.replace('\n','')
 
     marsDict['factTable'] = tableHTML
+    print("Fact table scraped")
 
     #### mars hemispheres
     # executable_path = {'executable_path': 'chromedriver'}
@@ -104,6 +107,8 @@ def scrape():
         hemisphere_image_urls.append(hemispheredict)
 
     marsDict['HemisphereImages'] = hemisphere_image_urls
+    print("Hemispheres scraped")
+    print(marsDict)
 
     return(marsDict)
 

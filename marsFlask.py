@@ -3,6 +3,7 @@ import scrape_mars
 import pymongo
 import subprocess
 import os
+from pprint import pprint
 
 # Flask setup
 app = Flask(__name__)
@@ -47,13 +48,24 @@ def scrape():
     # db.collection.insert_one(scrape_mars.scrape())
     
     data = scrape_mars.scrape()
+    print("Scrape return:")
+    print(data)
+
+    test = collection.find_one({"uniqueID":"1"})
+    print("Find in Mongo")
+    pprint(test)
 
     collection.update(
-        {},
-        data,
+        {"uniqueID":"1"},
+        {'$set':data},
         upsert=True
     )
 
+    print("After update")
+    test = collection.find_one({"uniqueID":"1"})
+    pprint(test)
+
+    print("MongoDB updated")
     mongod.terminate()
 
     return redirect("http://localhost:5000/", code=302)
