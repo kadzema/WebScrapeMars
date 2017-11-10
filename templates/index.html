@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Mars</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+</head>
+<body>
+	<div class="container-fluid" style="padding:20px 20px 20px 20px;">
+		<div class="jumbotron">
+			<div class="container text-center">
+				<h1>Latest on Mars</h1>
+				<p>Contents ...</p>
+				<p>
+					<a class="btn btn-primary btn-lg" href="/scrape">Scrape new data</a>
+				</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="panel panel-primary">
+					<div class="panel-heading">Latest Weather...</div>
+					<div class="panel-body">
+						{{dict.weather}}
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-8">
+				<div class="panel panel-primary">
+					<div class="panel-heading">Latest Featured Image...</div>
+					<div class="panel-body" style="padding:10px 10px 10px 10px;">
+						<img src={{dict.featured_image_url}} style="width:100%;">
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="panel panel-primary">
+					<div class="panel-heading">Latest News...</div>
+					<div class="panel-body">
+						<h3>{{dict.news_title}}</h3><br>
+						{{dict.news_teaser}}
+					</div>						
+				</div>
+				<div class="panel panel-primary">
+					<div class="panel-heading">The Facts</div>
+					<div class="panel-body text-center" style="width:100%;">
+						{{dict.factTable | safe}}
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="panel panel-primary">
+						<div class="panel-heading">The Hemispheres...</div>
+						<div class="panel-body text-center">
+							{% for hemisphere in dict.HemisphereImages %}
+							<div class="col-md-6">
+								<div class="panel panel-default">
+									<div class="panel-body">
+										<img src={{hemisphere.img_url}} style="width:100%" alt={{hemisphere.title}} class="thumbnail"><br>
+										<h4>{{hemisphere.title}}</h4>
+									</div>
+								</div>
+							</div>
+							{% endfor %}
+						</div>
+					</div>
+			</div>
+		</div>
+	</div>
+	
+</body>
+</html>
